@@ -42,7 +42,7 @@ Android will send the following message to Raspberry Pi to start the movement of
 ```json
 {"cat": "manual", "value": "FW10"}
 ```
-Possible values for the manual control are FW10(forward), BW10(backward), FL00(foward left), FR00(forward right), BL00(backward left), BR00(backward right)
+Possible values for the manual control are FW10(forward), BW10(backward), FL00(foward left), FR00(forward right). There are also BL00(backward left) and BR00(backward right), but these would require further implementation for the robot display, so it is not necessary for now.
 
 ### Raspberry Pi to android
 **Location Updates:**
