@@ -12,7 +12,7 @@ Note:
 
 ### Android to Raspberry PI
 
-**Obstacles**
+**Obstacles: **
 The message sent from Android to Raspberry Pi will be in the following format for obstacles: (week 8)
 ```json
 {
@@ -30,14 +30,14 @@ Direction of the robot (d)
     WEST - LEFT 6
 
 
-**Start Movement**
+**Start Movement: **
 Android will send the following message to Raspberry Pi to start the movement of the robot (assuming obstacles were set).
 ```json
 {"cat": "control", "value": "start"}
 ```
 
 ### Raspberry Pi to android
-**Location Updates**
+**Location Updates: **
 Raspberry Pi will periodically notify Android with the updated location of the robot, so its location may be displayed on the iPad
 ```json
 {"cat": "location", "value": {"x": 1, "y": 1, "d": 0}}
