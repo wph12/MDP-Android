@@ -30,6 +30,8 @@ Direction of the robot (d)
     SOUTH - DOWN - 4
     WEST - LEFT 6
 
+![image](https://github.com/user-attachments/assets/8767ff3d-2fed-4017-9ec8-2ae448cb7e56)
+
 
 **Start Movement:**
 
