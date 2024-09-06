@@ -36,6 +36,9 @@ Android will send the following message to Raspberry Pi to start the movement of
 {"cat": "control", "value": "start"}
 ```
 
+**Manual control:**
+
+
 ### Raspberry Pi to android
 **Location Updates:**
 
