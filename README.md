@@ -8,6 +8,8 @@ Messages between the Android app and Raspberry Pi will be in the following forma
 ```json
 {"cat": "xxx", "value": "xxx"}
 ```
+Messages will be sent as strings.
+
 ### Android to Raspberry PI
 
 **Obstacles:**
@@ -37,7 +39,10 @@ Android will send the following message to Raspberry Pi to start the movement of
 ```
 
 **Manual control:**
-
+```json
+{"cat": "manual", "value": "FW10"}
+```
+Possible values for the manual control are FW10(forward), BW10(backward), FL00(foward left), FR00(forward right), BL00(backward left), BR00(backward right)
 
 ### Raspberry Pi to android
 **Location Updates:**
