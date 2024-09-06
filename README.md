@@ -8,8 +8,6 @@ Messages between the Android app and Raspberry Pi will be in the following forma
 ```json
 {"cat": "xxx", "value": "xxx"}
 ```
-Note: 
-
 ### Android to Raspberry PI
 
 **Obstacles: **
