@@ -35,6 +35,9 @@ import com.google.android.material.tabs.TabLayout;
 
 import java.nio.charset.Charset;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 
 public class MainActivity extends AppCompatActivity {
     // Declaration Variables
@@ -329,6 +332,49 @@ public class MainActivity extends AppCompatActivity {
         public void onReceive(Context context, Intent intent) {
             String message = intent.getStringExtra("receivedMessage");
             System.out.println("debug" + message);
+            JSONObject obj = null;
+            String category = "";
+            JSONObject value = null;
+            try {
+                obj = new JSONObject(message);
+                category = obj.getJSONObject("\"cat\"").toString();
+                value = obj.getJSONObject("\"value\"");
+            } catch (JSONException e) {
+                throw new RuntimeException(e);
+            }
+            switch(category) {
+            case "location":
+                int xPos = 0;
+                int yPos = 0;
+                String direction = "";
+                try {
+                    xPos = (int) Float.parseFloat(value.getJSONObject("\"x\"").toString());
+                    yPos = (int) Float.parseFloat(value.getJSONObject("\"y\"").toString());
+                    direction = value.getJSONObject("\"d\"").toString();
+                } catch (JSONException e) {
+                    throw new RuntimeException(e);
+                }
+            	double bearing = 0;
+            	switch(direction) {
+            	case "0": bearing = 90; break;
+            	case "2": bearing = 0; break;
+            	case "4": bearing = 270; break;
+            	case "6": bearing = 180; break;
+            	}
+            	gridMap.moveRobot(new int[]{xPos, yPos}, bearing);
+                break;
+            case "image-rec":
+                try {
+                    gridMap.updateImageID(
+                        value.getJSONObject("\"obstacle_id\"").toString(),
+                        value.getJSONObject("\"image_id\"").toString()
+                    );
+                } catch (JSONException e) {
+                    throw new RuntimeException(e);
+                }
+                break;
+            }
+            /*
             if (message.contains("IMG")) {
                 String[] cmd = message.split("-");
                 gridMap.updateImageID(cmd[1], cmd[2]);
@@ -359,6 +405,7 @@ public class MainActivity extends AppCompatActivity {
                     ControlFragment.timerHandler.removeCallbacks(controlFragment.fastestCarTimer);
                 }
             }
+            */
         }
     };
 
