@@ -2,7 +2,7 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item>
         <shape android:shape="rectangle">
-            <gradient android:startColor="@color/betterBlue" android:endColor="@color/betterPurple" android:type="linear"/>
+            <gradient android:startColor="@color/PastelPink" android:endColor="@color/betterPurple" android:type="linear"/>
             <corners android:radius="10dip"/>
             <padding android:bottom="5dp" android:left="5dp" android:right ="5dp" android:top ="5dp"/>
         </shape>

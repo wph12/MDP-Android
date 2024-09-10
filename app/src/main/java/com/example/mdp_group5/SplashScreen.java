@@ -1,8 +1,10 @@
-package com.example.mdp_group31;
+package com.example.mdp_group5;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+
+import com.example.mdp_group5.R;
 
 public class SplashScreen extends Activity {
     Thread handler;

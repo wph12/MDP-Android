@@ -1,4 +1,4 @@
-package com.example.mdp_group31;
+package com.example.mdp_group5;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -15,7 +15,6 @@ import android.util.Log;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.ToggleButton;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,13 +22,14 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.viewpager.widget.ViewPager;
 
-import com.example.mdp_group31.main.BluetoothChatFragment;
-import com.example.mdp_group31.main.BluetoothConnectionService;
-import com.example.mdp_group31.main.BluetoothPopUp;
-import com.example.mdp_group31.main.ControlFragment;
-import com.example.mdp_group31.main.GridMap;
-import com.example.mdp_group31.main.MapTabFragment;
-import com.example.mdp_group31.main.SectionsPagerAdapter;
+import com.example.mdp_group5.R;
+import com.example.mdp_group5.main.BluetoothChatFragment;
+import com.example.mdp_group5.main.BluetoothConnectionService;
+import com.example.mdp_group5.main.BluetoothPopUp;
+import com.example.mdp_group5.main.ControlFragment;
+import com.example.mdp_group5.main.GridMap;
+import com.example.mdp_group5.main.MapTabFragment;
+import com.example.mdp_group5.main.SectionsPagerAdapter;
 
 import com.google.android.material.tabs.TabLayout;
 

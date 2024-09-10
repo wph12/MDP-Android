@@ -31,7 +31,7 @@
                     android:gravity="center"
                     android:text="Image Recognition"
                     android:textSize="20sp"
-                    android:textColor="@color/colorBlack" />
+                    android:textColor="@color/colorWhite" />
 
                 <TextView
                     android:id="@+id/exploreTimeTextView2"
@@ -87,7 +87,7 @@
                     android:gravity="center"
                     android:text="Fastest Path"
                     android:textSize="20sp"
-                    android:textColor="@color/colorBlack" />
+                    android:textColor="@color/colorWhite" />
 
                 <TextView
                     android:id="@+id/fastestTimeTextView2"

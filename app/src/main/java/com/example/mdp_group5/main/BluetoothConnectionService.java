@@ -1,4 +1,4 @@
-package com.example.mdp_group31.main;
+package com.example.mdp_group5.main;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
@@ -15,8 +15,8 @@ import android.widget.Toast;
 
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
-import com.example.mdp_group31.MainActivity;
-import com.example.mdp_group31.R;
+import com.example.mdp_group5.MainActivity;
+import com.example.mdp_group5.R;
 
 import java.io.IOException;
 import java.io.InputStream;

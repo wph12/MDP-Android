@@ -1,7 +1,5 @@
-package com.example.mdp_group31.main;
+package com.example.mdp_group5.main;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,8 +16,8 @@ import android.widget.ToggleButton;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import com.example.mdp_group31.MainActivity;
-import com.example.mdp_group31.R;
+import com.example.mdp_group5.MainActivity;
+import com.example.mdp_group5.R;
 
 public class MapTabFragment extends Fragment {
 

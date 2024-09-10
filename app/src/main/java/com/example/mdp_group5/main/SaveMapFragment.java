@@ -1,4 +1,4 @@
-package com.example.mdp_group31.main;
+package com.example.mdp_group5.main;
 
 import android.app.DialogFragment;
 import android.content.Context;
@@ -16,42 +16,43 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
-import com.example.mdp_group31.MainActivity;
-import com.example.mdp_group31.R;
+import com.example.mdp_group5.MainActivity;
+import com.example.mdp_group5.R;
 
-public class DirectionFragment extends DialogFragment {
+public class SaveMapFragment extends DialogFragment {
 
-    private static final String TAG = "DirectionFragment";
+    private static final String TAG = "SaveMapFragment";
     private SharedPreferences.Editor editor;
 
-    Button saveBtn, cancelDirectionBtn;
-    String direction = "";
+    SharedPreferences sharedPreferences;
+
+    Button saveBtn, cancelBtn;
+    String map;
     View rootView;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         showLog("Entering onCreateView");
-        rootView = inflater.inflate(R.layout.activity_direction, container, false);
+        rootView = inflater.inflate(R.layout.activity_save_map, container, false);
         super.onCreate(savedInstanceState);
 
-        getDialog().setTitle("Change Direction");
-        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("Shared Preferences", Context.MODE_PRIVATE);
+        getDialog().setTitle("Save Map");
+        sharedPreferences = getActivity().getSharedPreferences("Shared Preferences", Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
 
         saveBtn = rootView.findViewById(R.id.saveBtn);
-        cancelDirectionBtn = rootView.findViewById(R.id.cancelDirectionBtn);
+        cancelBtn = rootView.findViewById(R.id.cancelSaveMapBtn);
 
-        direction = sharedPreferences.getString("direction","");
+        map = sharedPreferences.getString("mapChoice","");
 
         if (savedInstanceState != null)
-            direction = savedInstanceState.getString("direction");
+            map = savedInstanceState.getString("mapChoice");
 
-
-        final Spinner spinner = (Spinner) rootView.findViewById(R.id.directionDropdownSpinner);
+        final Spinner spinner = (Spinner) rootView.findViewById(R.id.mapDropdownSpinner);
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(),
-                R.array.planets_array, android.R.layout.simple_spinner_item);
+                R.array.save_map_array, android.R.layout.simple_spinner_item);
         // Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apply the adapter to the spinner
@@ -61,31 +62,19 @@ public class DirectionFragment extends DialogFragment {
             @Override
             public void onClick(View view) {
                 showLog("Clicked saveBtn");
-                String direction = spinner.getSelectedItem().toString();
-                editor.putString("direction",direction);
-                switch (direction) {
-                    case "up":
-                        GridMap.robotBearing = 90;
-                        break;
-                    case "left":
-                        GridMap.robotBearing = 180;
-                        break;
-                    case "down":
-                        GridMap.robotBearing = 270;
-                        break;
-                    case "right":
-                        GridMap.robotBearing = 0;
-                        break;
-                }
-                ((MainActivity)getActivity()).refreshDirection(direction);
-                Toast.makeText(getActivity(), "Saving direction...", Toast.LENGTH_SHORT).show();
+                map = spinner.getSelectedItem().toString();
+                editor.putString("mapChoice", map);
+                String getObsPos = ((MainActivity)getActivity()).getGridMap().getAllObstacles();
+                editor.putString(map, getObsPos);
+
+                Toast.makeText(getActivity(), "Saving " + map, Toast.LENGTH_SHORT).show();
                 showLog("Exiting saveBtn");
                 editor.commit();
                 getDialog().dismiss();
             }
         });
 
-        cancelDirectionBtn.setOnClickListener(new View.OnClickListener() {
+        cancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showLog("Clicked cancelDirectionBtn");
@@ -103,7 +92,7 @@ public class DirectionFragment extends DialogFragment {
         super.onSaveInstanceState(outState);
         saveBtn = rootView.findViewById(R.id.saveBtn);
         showLog("Exiting onSaveInstanceState");
-        outState.putString(TAG, direction);
+        outState.putString(TAG, map);
     }
 
     @Override

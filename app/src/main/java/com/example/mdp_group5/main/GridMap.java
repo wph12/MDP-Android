@@ -1,4 +1,4 @@
-package com.example.mdp_group31.main;
+package com.example.mdp_group5.main;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -28,7 +28,7 @@ import android.widget.ToggleButton;
 
 import androidx.annotation.Nullable;
 
-import com.example.mdp_group31.R;
+import com.example.mdp_group5.R;
 
 import java.util.ArrayList;
 import java.util.Arrays;

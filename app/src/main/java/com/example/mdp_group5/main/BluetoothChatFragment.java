@@ -1,4 +1,4 @@
-package com.example.mdp_group31.main;
+package com.example.mdp_group5.main;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -16,12 +16,11 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
-import com.example.mdp_group31.MainActivity;
-import com.example.mdp_group31.R;
+import com.example.mdp_group5.MainActivity;
+import com.example.mdp_group5.R;
 
 import java.nio.charset.Charset;
 
