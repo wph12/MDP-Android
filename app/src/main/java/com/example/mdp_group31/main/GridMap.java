@@ -260,34 +260,34 @@ public class GridMap extends View {
         textPaint.setTextSize(17);
         textPaint.setColor(Color.BLACK);
 
-        for (int x = 1; x <= COL; x++) {
+        for (int x = 0; x < COL; x++) {
             if (x >= 10)
                 canvas.drawText(
                         Integer.toString(x),
-                        cells[x][20].startX + (cellSize / 5),
-                        cells[x][20].startY + (cellSize / 1.5f),
+                        cells[x+1][20].startX + (cellSize / 5),
+                        cells[x+1][20].startY + (cellSize / 1.5f),
                         textPaint
                 );
             else
                 canvas.drawText(
                         Integer.toString(x),
-                        cells[x][20].startX + (cellSize / 2.5f),
-                        cells[x][20].startY + (cellSize / 1.5f),
+                        cells[x+1][20].startX + (cellSize / 2.5f),
+                        cells[x+1][20].startY + (cellSize / 1.5f),
                         textPaint
                 );
         }
 
         for (int y = 0; y < ROW; y++) {
-            if ((20 - y) >= 10)
+            if ((19 - y) >= 10)
                 canvas.drawText(
-                        Integer.toString(ROW - y),
+                        Integer.toString(19 - y),
                         cells[0][y].startX + (cellSize / 5),
                         cells[0][y].startY + (cellSize / 1.5f),
                         textPaint
                 );
             else
                 canvas.drawText(
-                        Integer.toString(ROW - y),
+                        Integer.toString(19 - y),
                         cells[0][y].startX + (cellSize / 2.5f),
                         cells[0][y].startY + (cellSize / 1.5f),
                         textPaint
@@ -303,6 +303,97 @@ public class GridMap extends View {
         this.canDrawRobot = canDrawRobot;
     }
 
+
+    //    private void drawRobot(Canvas canvas, int[] curCoord) {
+//        float xCoord, yCoord;
+//        BitmapFactory.Options op = new BitmapFactory.Options();
+//        Bitmap bm, mapscalable;
+//        int robotX = curCoord[0];
+//        int robotY = curCoord[1];
+//
+//        if (! (robotX == -1 && robotY == -1)) {
+//            op.inMutable = true;
+//            switch (this.getRobotDirection()) {
+//                case "up":
+//                    if (robotY < 2 || robotY > 20 || robotX < 1 || robotX > 19) {
+//                        Toast.makeText(
+//                                this.getContext(),
+//                                "Error with drawing robot (out of bound)",
+//                                Toast.LENGTH_SHORT
+//                        ).show();
+//                        this.setCanDrawRobot(false);
+//                    } else {
+//                        xCoord = cells[robotX][20 - robotY].startX;
+//                        yCoord = cells[robotX][20 - robotY].startY;
+//                        bm = BitmapFactory.decodeResource(getResources(),R.drawable.car_face_up, op);
+//                        mapscalable = Bitmap.createScaledBitmap(bm, 100,100, true);
+//                        canvas.drawBitmap(mapscalable, xCoord, yCoord, null);
+//                    }
+//                    break;
+//
+//                case "down":
+//                    if (robotY < 1 ||robotY > 19 || robotX < 2 || robotX > 20) {
+//                        Toast.makeText(
+//                                this.getContext(),
+//                                "Error with drawing robot (out of bound)",
+//                                Toast.LENGTH_SHORT
+//                        ).show();
+//                        this.setCanDrawRobot(false);
+//                    } else {
+//                        xCoord = cells[robotX - 1][20 - (robotY + 1)].startX;
+//                        yCoord = cells[robotX - 1][20 - (robotY + 1)].startY;
+//                        bm = BitmapFactory.decodeResource(getResources(),R.drawable.car_face_down, op);
+//                        mapscalable = Bitmap.createScaledBitmap(bm, 100,100, true);
+//                        canvas.drawBitmap(mapscalable, xCoord, yCoord, null);
+//
+//                    }
+//                    break;
+//                case "right":
+//                    if (robotY < 2 || robotY > 20 || robotX < 2 || robotX > 20) {
+//                        Toast.makeText(
+//                                this.getContext(),
+//                                "Error with drawing robot (out of bound)",
+//                                Toast.LENGTH_SHORT
+//                        ).show();
+//                        this.setCanDrawRobot(false);
+//                    } else {
+//                        xCoord = cells[robotX - 1][20 - robotY].startX;
+//                        yCoord = cells[robotX - 1][20 - robotY].startY;
+//                        bm = BitmapFactory.decodeResource(getResources(),R.drawable.car_face_right, op);
+//                        mapscalable = Bitmap.createScaledBitmap(bm, 100,100, true);
+//                        canvas.drawBitmap(mapscalable, xCoord, yCoord, null);
+//                    }
+//                    break;
+//
+//                case "left":
+//                    if (robotY < 1 || robotY > 19 ||robotX < 1 || robotX > 19) {
+//                        Toast.makeText(
+//                                this.getContext(),
+//                                "Error with drawing robot (out of bound)",
+//                                Toast.LENGTH_SHORT
+//                        ).show();
+//                        this.setCanDrawRobot(false);
+//                    } else {
+//                        xCoord = cells[robotX][20 - (robotY - 1)].startX;
+//                        yCoord = cells[robotX][20 - (robotY + 1)].startY;
+//                        bm = BitmapFactory.decodeResource(getResources(),R.drawable.car_face_left, op);
+//                        mapscalable = Bitmap.createScaledBitmap(bm, 100,100, true);
+//                        canvas.drawBitmap(mapscalable, xCoord, yCoord, null);
+//                    }
+//                    break;
+//
+//                default:
+//                    Toast.makeText(
+//                            this.getContext(),
+//                            "Error with drawing robot (unknown direction)",
+//                            Toast.LENGTH_SHORT
+//                    ).show();
+//                    break;
+//            }
+//        }
+//    }
+//
+
     private void drawRobot(Canvas canvas, int[] curCoord) {
         float xCoord, yCoord;
         BitmapFactory.Options op = new BitmapFactory.Options();
@@ -310,11 +401,11 @@ public class GridMap extends View {
         int robotX = curCoord[0];
         int robotY = curCoord[1];
 
-        if (! (robotX == -1 && robotY == -1)) {
+        if (!(robotX == -1 && robotY == -1)) {
             op.inMutable = true;
             switch (this.getRobotDirection()) {
                 case "up":
-                    if (robotY < 2 || robotY > 20 || robotX < 1 || robotX > 19) {
+                    if (robotY < 3 || robotY > 20 || robotX < 1 || robotX > 18) {
                         Toast.makeText(
                                 this.getContext(),
                                 "Error with drawing robot (out of bound)",
@@ -325,13 +416,13 @@ public class GridMap extends View {
                         xCoord = cells[robotX][20 - robotY].startX;
                         yCoord = cells[robotX][20 - robotY].startY;
                         bm = BitmapFactory.decodeResource(getResources(),R.drawable.car_face_up, op);
-                        mapscalable = Bitmap.createScaledBitmap(bm, 51,51, true);
+                        mapscalable = Bitmap.createScaledBitmap(bm, 110,110, true);
                         canvas.drawBitmap(mapscalable, xCoord, yCoord, null);
                     }
                     break;
 
                 case "down":
-                    if (robotY < 1 ||robotY > 19 || robotX < 2 || robotX > 20) {
+                    if (robotY < 1 || robotY > 18 || robotX < 3 || robotX > 20) {
                         Toast.makeText(
                                 this.getContext(),
                                 "Error with drawing robot (out of bound)",
@@ -339,16 +430,16 @@ public class GridMap extends View {
                         ).show();
                         this.setCanDrawRobot(false);
                     } else {
-                        xCoord = cells[robotX - 1][20 - (robotY + 1)].startX;
-                        yCoord = cells[robotX - 1][20 - (robotY + 1)].startY;
+                        xCoord = cells[robotX - 2][20 - (robotY + 2)].startX;
+                        yCoord = cells[robotX - 2][20 - (robotY + 2)].startY;
                         bm = BitmapFactory.decodeResource(getResources(),R.drawable.car_face_down, op);
-                        mapscalable = Bitmap.createScaledBitmap(bm, 51,51, true);
+                        mapscalable = Bitmap.createScaledBitmap(bm, 110,110, true);
                         canvas.drawBitmap(mapscalable, xCoord, yCoord, null);
-
                     }
                     break;
+
                 case "right":
-                    if (robotY < 2 || robotY > 20 || robotX < 2 || robotX > 20) {
+                    if (robotY < 3 || robotY > 20 || robotX < 3 || robotX > 20) {
                         Toast.makeText(
                                 this.getContext(),
                                 "Error with drawing robot (out of bound)",
@@ -356,16 +447,16 @@ public class GridMap extends View {
                         ).show();
                         this.setCanDrawRobot(false);
                     } else {
-                        xCoord = cells[robotX - 1][20 - robotY].startX;
-                        yCoord = cells[robotX - 1][20 - robotY].startY;
+                        xCoord = cells[robotX - 2][20 - robotY].startX;
+                        yCoord = cells[robotX - 2][20 - robotY].startY;
                         bm = BitmapFactory.decodeResource(getResources(),R.drawable.car_face_right, op);
-                        mapscalable = Bitmap.createScaledBitmap(bm, 51,51, true);
+                        mapscalable = Bitmap.createScaledBitmap(bm, 110,110, true);
                         canvas.drawBitmap(mapscalable, xCoord, yCoord, null);
                     }
                     break;
 
                 case "left":
-                    if (robotY < 1 || robotY > 19 ||robotX < 1 || robotX > 19) {
+                    if (robotY < 1 || robotY > 18 || robotX < 1 || robotX > 18) {
                         Toast.makeText(
                                 this.getContext(),
                                 "Error with drawing robot (out of bound)",
@@ -373,10 +464,10 @@ public class GridMap extends View {
                         ).show();
                         this.setCanDrawRobot(false);
                     } else {
-                        xCoord = cells[robotX][20 - (robotY - 1)].startX;
-                        yCoord = cells[robotX][20 - (robotY + 1)].startY;
+                        xCoord = cells[robotX][20 - (robotY + 2)].startX;
+                        yCoord = cells[robotX][20 - (robotY + 2)].startY;
                         bm = BitmapFactory.decodeResource(getResources(),R.drawable.car_face_left, op);
-                        mapscalable = Bitmap.createScaledBitmap(bm, 51,51, true);
+                        mapscalable = Bitmap.createScaledBitmap(bm, 110,110, true);
                         canvas.drawBitmap(mapscalable, xCoord, yCoord, null);
                     }
                     break;
@@ -391,6 +482,7 @@ public class GridMap extends View {
             }
         }
     }
+
 
     private void drawObstacles(Canvas canvas) {
         Paint textPaint = new Paint();
