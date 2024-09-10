@@ -65,7 +65,7 @@
 
                     <view
                         android:id="@+id/mapView"
-                        class="com.example.mdp_Gp5.main.GridMap"
+                        class="com.example.mdp_group5.main.GridMap"
                         android:layout_width="match_parent"
                         android:layout_height="430dp" />
                 </LinearLayout>
