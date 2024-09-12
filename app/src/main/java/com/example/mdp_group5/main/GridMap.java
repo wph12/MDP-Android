@@ -494,7 +494,7 @@ public class GridMap extends View {
                 String displayedText;
                 if (! IMAGE_LIST[19 - i][j].equals("")) {
                     displayedText = IMAGE_LIST[19 - i][j];
-                    textPaint.setTextSize(17);
+                    textPaint.setTextSize(18);
                     canvas.drawText(
                             displayedText,
                             cells[j + 1][19 - i].startX + ((cells[1][1].endX - cells[1][1].startX) / 2),
@@ -626,7 +626,7 @@ public class GridMap extends View {
                             android.R.layout.simple_spinner_item);
                     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     mBearingSpinner.setAdapter(adapter2);
-                    mIDSpinner.setSelection(Integer.parseInt(obstacleID.substring(2)));
+                    mIDSpinner.setSelection(Integer.parseInt(obstacleID));
 
                     switch (obstacleBearing) {
                         case "North": mBearingSpinner.setSelection(0);
@@ -735,7 +735,7 @@ public class GridMap extends View {
             if (this.setObstacleStatus) {
                 if (this.initialRow <= 20 && this.initialColumn <= 20) {
                     this.setImageBearing("North", this.initialColumn, this.initialRow);
-                    this.addObstacleCoord(initialColumn, initialRow, "OB0");
+                    this.addObstacleCoord(initialColumn, initialRow, "0");
                 }
                 this.invalidate();
                 return true;
@@ -892,7 +892,7 @@ public class GridMap extends View {
      * @param obstacleID The ID of the obstacle
      */
     public void addObstacleCoord(int col, int row, String obstacleID) {
-        int parsedID = Integer.parseInt(obstacleID.substring(2));
+        int parsedID = Integer.parseInt(obstacleID);
         int[] obstacleCoord = new int[]{col, row, parsedID};
         this.obstacleCoord.add(obstacleCoord);
         this.setObstacleID(obstacleID, col, row);
@@ -983,7 +983,7 @@ public class GridMap extends View {
         int obstacleX, obstacleY;
         for (int i = 0; i < this.getObstacleCoord().size(); i ++) {
             int[] currentObstacle = this.getObstacleCoord().get(i);
-            int[] targetObstacle = new int[]{x, y, Integer.parseInt(obstacleID.substring(2))};
+            int[] targetObstacle = new int[]{x, y, Integer.parseInt(obstacleID)};
             if (Arrays.equals(currentObstacle, targetObstacle)) {
                 obstacleX = currentObstacle[0];
                 obstacleY = currentObstacle[1];

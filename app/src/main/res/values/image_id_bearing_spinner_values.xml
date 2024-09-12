@@ -1,27 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="imageID_array">
-        <item>OB0</item>
-        <item>OB1</item>
-        <item>OB2</item>
-        <item>OB3</item>
-        <item>OB4</item>
-        <item>OB5</item>
-        <item>OB6</item>
-        <item>OB7</item>
-        <item>OB8</item>
-        <item>OB9</item>
-        <item>OB10</item>
-        <item>OB11</item>
-        <item>OB12</item>
-        <item>OB13</item>
-        <item>OB14</item>
-        <item>OB15</item>
-        <item>OB16</item>
-        <item>OB17</item>
-        <item>OB18</item>
-        <item>OB19</item>
-        <item>OB20</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+        <item>16</item>
+        <item>17</item>
+        <item>18</item>
+        <item>19</item>
+
+
+        <item>20</item>
+        <item>21</item>
+        <item>22</item>
+        <item>23</item>
+        <item>24</item>
+        <item>25</item>
+        <item>26</item>
+        <item>27</item>
+        <item>28</item>
+        <item>29</item>
+        <item>30</item>
+        <item>31</item>
+        <item>32</item>
+        <item>33</item>
+        <item>34</item>
+        <item>35</item>
+
+
+        <item>36</item>
+        <item>37</item>
+        <item>38</item>
+        <item>39</item>
+        <item>40</item>
 
     </string-array>
 

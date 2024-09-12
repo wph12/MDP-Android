@@ -64,7 +64,7 @@ public class LoadMapFragment extends DialogFragment {
                 String[] obstaclePosition = obsPos.split("\\|");
                 for (String s : obstaclePosition) {
                     String[] coords = s.split(",");
-                    coords[3] = "OB" + coords[3];
+                    //coords[3] = "OB" + coords[3];
                     this.gridMap.addObstacleCoord(Integer.parseInt(coords[0]), Integer.parseInt(coords[1]), coords[3]);
                     String direction;
                     switch (coords[2]) {
