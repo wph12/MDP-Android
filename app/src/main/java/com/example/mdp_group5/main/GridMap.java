@@ -1324,7 +1324,7 @@ public class GridMap extends View {
             case 'W':
             	message.append('6'); break;
             }
-            message.append("\"mode\": \"0\"");
+            message.append("}");
             /*
             message is in the following format:
             x-coord,y-coord,N/S/E/W,obstacleID|x-coord,y-coord,N/S/E/W,obstacleID|...
@@ -1334,6 +1334,7 @@ public class GridMap extends View {
                     .append(currentObstacle[2]).append("|");
             */
         }
+        message.append("],\"mode\":'0'");
         return message.toString();
     }
 
