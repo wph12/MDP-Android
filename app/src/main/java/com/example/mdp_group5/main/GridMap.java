@@ -1340,31 +1340,6 @@ public class GridMap extends View {
 
     /**
      * RPI recognises obstacle, sends the obstacle ID and the image ID
-     * @param obstacleID The ID associated with the obstacle (sent over to RPI at the start). Note "OB" is stripped!
-     * @param imageID The ID associated with the image (refer to the image list)
-     */
-    public void updateImageID(String obstacleID, String imageID) {
-        int x = -1;     // x-cordinate (also the column)
-        int y = -1;     // y-cordinate (also the row)
-        for (int i = 0; i < this.getObstacleCoord().size(); i ++) {
-            /*
-            currentObstacle is a int[3] array
-            currentObstacle[0] is the x-coord of the obstacle
-            currentObstacle[1] is the y-coord of the obstacle
-            currentObstacle[2] is the obstacle ID (with "OB" stripped) of the obstacle
-             */
-            int[] currentObstacle = this.getObstacleCoord().get(i);
-            if (Integer.parseInt(obstacleID) == currentObstacle[2]) {
-                x = currentObstacle[0];
-                y = currentObstacle[1];
-                this.setImageID(imageID, x, y);
-            }
-        }
-        this.invalidate();
-    }
-
-    /**
-     * RPI recognises obstacle, sends the obstacle ID and the image ID
      * @param obstacleID The ID associated with the obstacle (sent over to RPI at the start).
      * @param imageID The ID associated with the image (refer to the image list)
      */
