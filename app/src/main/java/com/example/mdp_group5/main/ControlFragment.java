@@ -274,7 +274,7 @@ public class ControlFragment extends Fragment {
             // changed from START to STOP (i.e., challenge started)
             else if (fastestCarBtn.getText().equals("STOP")) {
                 this.showToast("Fastest Car started!");
-                this.mainActivity.sendMessage("STM|Start");
+                this.mainActivity.sendMessage("controlstart");
                 this.mainActivity.fastestCarTimerFlag = false;
                 this.robotStatusText.setText(R.string.fastest_car_start);
                 this.fastestCarTime = System.currentTimeMillis();

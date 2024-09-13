@@ -416,7 +416,7 @@ public class GridMap extends View {
                         xCoord = cells[robotX][20 - robotY].startX;
                         yCoord = cells[robotX][20 - robotY].startY;
                         bm = BitmapFactory.decodeResource(getResources(),R.drawable.car_face_up, op);
-                        mapscalable = Bitmap.createScaledBitmap(bm, 110,110, true);
+                        mapscalable = Bitmap.createScaledBitmap(bm, 80,80, true);
                         canvas.drawBitmap(mapscalable, xCoord, yCoord, null);
                     }
                     break;
@@ -433,7 +433,7 @@ public class GridMap extends View {
                         xCoord = cells[robotX - 2][20 - (robotY + 2)].startX;
                         yCoord = cells[robotX - 2][20 - (robotY + 2)].startY;
                         bm = BitmapFactory.decodeResource(getResources(),R.drawable.car_face_down, op);
-                        mapscalable = Bitmap.createScaledBitmap(bm, 110,110, true);
+                        mapscalable = Bitmap.createScaledBitmap(bm, 80,80, true);
                         canvas.drawBitmap(mapscalable, xCoord, yCoord, null);
                     }
                     break;
@@ -450,7 +450,7 @@ public class GridMap extends View {
                         xCoord = cells[robotX - 2][20 - robotY].startX;
                         yCoord = cells[robotX - 2][20 - robotY].startY;
                         bm = BitmapFactory.decodeResource(getResources(),R.drawable.car_face_right, op);
-                        mapscalable = Bitmap.createScaledBitmap(bm, 110,110, true);
+                        mapscalable = Bitmap.createScaledBitmap(bm, 80,80, true);
                         canvas.drawBitmap(mapscalable, xCoord, yCoord, null);
                     }
                     break;
@@ -467,7 +467,7 @@ public class GridMap extends View {
                         xCoord = cells[robotX][20 - (robotY + 2)].startX;
                         yCoord = cells[robotX][20 - (robotY + 2)].startY;
                         bm = BitmapFactory.decodeResource(getResources(),R.drawable.car_face_left, op);
-                        mapscalable = Bitmap.createScaledBitmap(bm, 110,110, true);
+                        mapscalable = Bitmap.createScaledBitmap(bm, 80,80, true);
                         canvas.drawBitmap(mapscalable, xCoord, yCoord, null);
                     }
                     break;
@@ -1281,6 +1281,7 @@ public class GridMap extends View {
     /**
      * Retrieves all obstacles currently on the map, pre-process them into a String to be sent over to RPI
      * @return Pre-processed Sring. Format: x-coord,y-coord,N/S/E/W,obstacleID|x-coord,y-coord,N/S/E/W,obstacleID|...
+     * --change to {x-coord,y-coord,obstacleID,N/S/E/W,}{x-coord,y-coord,obstacleID,0/4/2/6,}{...}
      */
     public String getAllObstacles() {
         StringBuilder message = new StringBuilder();
@@ -1292,16 +1293,23 @@ public class GridMap extends View {
             message is in the following format:
             x-coord,y-coord,N/S/E/W,obstacleID|x-coord,y-coord,N/S/E/W,obstacleID|...
              */
-            message.append(currentObstacle[0]).append(",").append(currentObstacle[1])
-                    .append(",").append(imageBearing.charAt(0)).append(",")
-                    .append(currentObstacle[2]).append("|");
+            //message.append(currentObstacle[0]).append(",").append(currentObstacle[1])
+            //        .append(",").append(imageBearing.charAt(0)).append(",")
+            //        .append(currentObstacle[2]).append("|");
+
+                        /*
+       {x-coord,y-coord,obstacleID,0/4/2/6,}{x-coord,y-coord,obstacleID,0/4/6/2,}{...}
+             */
+            message.append("{").append(currentObstacle[0]).append(",").append(currentObstacle[1])
+                    .append(",").append(currentObstacle[2]).append(",").append(imageBearing.charAt(0)).
+                    append("}");
         }
         return message.toString();
     }
 
     /**
      * RPI recognises obstacle, sends the obstacle ID and the image ID
-     * @param obstacleID The ID associated with the obstacle (sent over to RPI at the start). Note "OB" is stripped!
+     * @param obstacleID The ID associated with the obstacle (sent over to RPI at the start).
      * @param imageID The ID associated with the image (refer to the image list)
      */
     public void updateImageID(String obstacleID, String imageID) {
@@ -1312,7 +1320,7 @@ public class GridMap extends View {
             currentObstacle is a int[3] array
             currentObstacle[0] is the x-coord of the obstacle
             currentObstacle[1] is the y-coord of the obstacle
-            currentObstacle[2] is the obstacle ID (with "OB" stripped) of the obstacle
+            currentObstacle[2] is the obstacle ID of the obstacle
              */
             int[] currentObstacle = this.getObstacleCoord().get(i);
             if (Integer.parseInt(obstacleID) == currentObstacle[2]) {
