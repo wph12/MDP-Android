@@ -147,7 +147,7 @@ public class GridMap extends View {
         this.greenPaint.setStrokeWidth(8);
         this.obstacleColor.setColor(getResources().getColor(R.color.rockColor));
         this.robotColor.setColor(getResources().getColor(R.color.light_blue));
-        this.robotColor.setStrokeWidth(2);
+        this.robotColor.setStrokeWidth(3);
         this.endColor.setColor(Color.RED);
         this.startColor.setColor(Color.CYAN);
         this.waypointColor.setColor(Color.GREEN);
@@ -816,27 +816,47 @@ public class GridMap extends View {
 
         switch (direction) {
             case "up":
+                this.updateCells("explored", col + 1, row - 2);
                 this.updateCells("explored", col + 1, row - 1);
                 this.updateCells("explored", col + 1, row);
+                this.updateCells("explored", col + 2, row - 2);
+                this.updateCells("explored", col + 2, row - 1);
+                this.updateCells("explored", col + 2, row);
+                this.updateCells("explored", col, row - 2);
                 this.updateCells("explored", col, row - 1);
                 break;
 
             case "down":
+                this.updateCells("explored", col - 1, row + 2);
                 this.updateCells("explored", col - 1, row + 1);
                 this.updateCells("explored", col - 1, row);
+                this.updateCells("explored", col - 2, row + 2);
+                this.updateCells("explored", col - 2, row + 1);
+                this.updateCells("explored", col - 2, row);
+                this.updateCells("explored", col, row + 2);
                 this.updateCells("explored", col, row + 1);
                 break;
 
             case "left":
+                this.updateCells("explored", col + 2, row + 1);
                 this.updateCells("explored", col + 1, row + 1);
-                this.updateCells("explored", col + 1, row);
                 this.updateCells("explored", col, row + 1);
+                this.updateCells("explored", col + 2, row + 2);
+                this.updateCells("explored", col + 1, row + 2);
+                this.updateCells("explored", col, row + 2);
+                this.updateCells("explored", col + 2, row);
+                this.updateCells("explored", col + 1, row);
                 break;
 
             case "right":
+                this.updateCells("explored", col - 2, row - 1);
                 this.updateCells("explored", col - 1, row - 1);
-                this.updateCells("explored", col - 1, row);
                 this.updateCells("explored", col, row - 1);
+                this.updateCells("explored", col - 2, row - 2);
+                this.updateCells("explored", col - 1, row - 2);
+                this.updateCells("explored", col, row - 2);
+                this.updateCells("explored", col - 2, row);
+                this.updateCells("explored", col - 1, row);
                 break;
         }
     }
