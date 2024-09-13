@@ -165,6 +165,7 @@ public class ControlFragment extends Fragment {
                 }
                 // refreshes the UI displayed coordinate of robot
                 this.mainActivity.refreshCoordinate();
+                this.mainActivity.sendMessage("{\"cat\": \"manual\", \"value\": \"FW10\"}");
             }
             else
                 this.showToast("Please place robot on map to begin");
@@ -188,7 +189,7 @@ public class ControlFragment extends Fragment {
                         this.gridMap.moveRobot(new int[]{this.curCoord[0] + 2, this.curCoord[1] - 4}, -90);
                         break;
                 }
-
+                this.mainActivity.sendMessage("{\"cat\": \"manual\", \"value\": \"FR00\"}");
                 this.mainActivity.refreshCoordinate();
             }
             else
@@ -214,6 +215,7 @@ public class ControlFragment extends Fragment {
                         break;
                 }
                 this.mainActivity.refreshCoordinate();
+                this.mainActivity.sendMessage("{\"cat\": \"manual\", \"value\": \"BW10\"}");
             }
             else {
                 this.showToast("Please place robot on map to begin");
@@ -239,6 +241,7 @@ public class ControlFragment extends Fragment {
                         break;
                 }
                 this.mainActivity.refreshCoordinate();
+                this.mainActivity.sendMessage("{\"cat\": \"manual\", \"value\": \"FL00\"}");
             }
             else
                 this.showToast("Please place robot on map to begin");
