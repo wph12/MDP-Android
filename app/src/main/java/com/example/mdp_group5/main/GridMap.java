@@ -1225,26 +1225,26 @@ public class GridMap extends View {
              */
             switch (direction) {
                 case "up":
-                    if (robotCoord[1] - 1 <= obstacleY && obstacleY <= robotCoord[1]
-                            && robotCoord[0] <= obstacleX && obstacleX <= robotCoord[0] + 1) {
+                    if (robotCoord[1] - 2 <= obstacleY && obstacleY <= robotCoord[1]
+                            && robotCoord[0] <= obstacleX && obstacleX <= robotCoord[0] + 2) {
                         return false;
                     }
                     break;
                 case "down":
-                    if (robotCoord[1] <= obstacleY && obstacleY <= robotCoord[1] + 1
-                            && robotCoord[0] - 1 <= obstacleX && obstacleX <= robotCoord[0]) {
+                    if (robotCoord[1] <= obstacleY && obstacleY <= robotCoord[1] + 2
+                            && robotCoord[0] - 2 <= obstacleX && obstacleX <= robotCoord[0]) {
                         return false;
                     }
                     break;
                 case "left":
-                    if (robotCoord[0] <= obstacleX && obstacleX <= robotCoord[0] + 1
-                            && robotCoord[1] <= obstacleY && obstacleY <= robotCoord[1] + 1) {
+                    if (robotCoord[0] <= obstacleX && obstacleX <= robotCoord[0] + 2
+                            && robotCoord[1] <= obstacleY && obstacleY <= robotCoord[1] + 2) {
                         return false;
                     }
                     break;
                 case "right":
-                    if (robotCoord[0] - 1 <= obstacleX && obstacleX <= robotCoord[0]
-                            && robotCoord[1] - 1 <= obstacleY && obstacleY <= robotCoord[1]) {
+                    if (robotCoord[0] - 2 <= obstacleX && obstacleX <= robotCoord[0]
+                            && robotCoord[1] - 2 <= obstacleY && obstacleY <= robotCoord[1]) {
                         return false;
                     }
                     break;
