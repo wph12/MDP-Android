@@ -340,39 +340,45 @@ public class MainActivity extends AppCompatActivity {
                 category = obj.getJSONObject("\"cat\"").toString();
                 value = obj.getJSONObject("\"value\"");
             } catch (JSONException e) {
-                throw new RuntimeException(e);
             }
-            switch(category) {
-            case "location":
-                int xPos = 0;
-                int yPos = 0;
-                String direction = "";
-                try {
-                    xPos = (int) Float.parseFloat(value.getJSONObject("\"x\"").toString());
-                    yPos = (int) Float.parseFloat(value.getJSONObject("\"y\"").toString());
-                    direction = value.getJSONObject("\"d\"").toString();
-                } catch (JSONException e) {
-                    throw new RuntimeException(e);
-                }
-            	double bearing = 0;
-            	switch(direction) {
-            	case "0": bearing = 90; break;
-            	case "2": bearing = 0; break;
-            	case "4": bearing = 270; break;
-            	case "6": bearing = 180; break;
-            	}
-            	gridMap.moveRobot(new int[]{xPos, yPos}, bearing);
-                break;
-            case "image-rec":
-                try {
-                    gridMap.updateImageID(
-                        value.getJSONObject("\"obstacle_id\"").toString(),
-                        value.getJSONObject("\"image_id\"").toString()
-                    );
-                } catch (JSONException e) {
-                    throw new RuntimeException(e);
-                }
-                break;
+            switch (category) {
+                case "location":
+                    int xPos = 0;
+                    int yPos = 0;
+                    String direction = "";
+                    try {
+                        xPos = (int) Float.parseFloat(value.getJSONObject("\"x\"").toString());
+                        yPos = (int) Float.parseFloat(value.getJSONObject("\"y\"").toString());
+                        direction = value.getJSONObject("\"d\"").toString();
+                    } catch (JSONException e) {
+                    }
+                    double bearing = 0;
+                    switch (direction) {
+                        case "0":
+                            bearing = 90;
+                            break;
+                        case "2":
+                            bearing = 0;
+                            break;
+                        case "4":
+                            bearing = 270;
+                            break;
+                        case "6":
+                            bearing = 180;
+                            break;
+                    }
+                    gridMap.moveRobot(new int[]{xPos, yPos}, bearing);
+                    break;
+                case "image-rec":
+                    try {
+                        gridMap.updateImageID(
+                                value.getJSONObject("\"obstacle_id\"").toString(),
+                                value.getJSONObject("\"image_id\"").toString()
+                        );
+                    } catch (JSONException e) {
+                        throw new RuntimeException(e);
+                    }
+                    break;
             }
             /*
             if (message.contains("IMG")) {
@@ -408,8 +414,6 @@ public class MainActivity extends AppCompatActivity {
             */
         }
     };
-
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -460,4 +464,4 @@ public class MainActivity extends AppCompatActivity {
         outState.putString(TAG, "onSaveInstanceState");
         this.showLog("Exiting onSaveInstanceState");
     }
-}
+};
