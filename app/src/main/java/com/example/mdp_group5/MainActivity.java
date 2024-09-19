@@ -34,9 +34,9 @@ import com.example.mdp_group5.main.SectionsPagerAdapter;
 import com.google.android.material.tabs.TabLayout;
 
 import java.nio.charset.Charset;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-import org.json.JSONException;
-import org.json.JSONObject;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -332,26 +332,22 @@ public class MainActivity extends AppCompatActivity {
         public void onReceive(Context context, Intent intent) {
             String message = intent.getStringExtra("receivedMessage");
             System.out.println("debug" + message);
-            JSONObject obj = null;
-            String category = "";
-            JSONObject value = null;
-            try {
-                obj = new JSONObject(message);
-                category = obj.getJSONObject("\"cat\"").toString();
-                value = obj.getJSONObject("\"value\"");
-            } catch (JSONException e) {
-            }
+            final Pattern MessagePattern = Pattern.compile("\\{\"cat\": \"(.+)\", \"value\": \\{(.+)\\}\\}");
+            Matcher messagematch = MessagePattern.matcher(message);
+            messagematch.find();
+            String category = messagematch.group(1);
+            String value = messagematch.group(2);
             switch (category) {
                 case "location":
                     int xPos = 0;
                     int yPos = 0;
                     String direction = "";
-                    try {
-                        xPos = (int) Float.parseFloat(value.getJSONObject("\"x\"").toString());
-                        yPos = (int) Float.parseFloat(value.getJSONObject("\"y\"").toString());
-                        direction = value.getJSONObject("\"d\"").toString();
-                    } catch (JSONException e) {
-                    }
+                    final Pattern LocationPattern = Pattern.compile("\"x\": *([0-9]+), *\"y\": *([0-9]+), *\"d\": *([0,2,4,6])");
+                    Matcher locationmatch = LocationPattern.matcher(value);
+                    locationmatch.find();
+                    xPos = Integer.parseInt(locationmatch.group(1));
+                    yPos = Integer.parseInt(locationmatch.group(2));
+                    direction = locationmatch.group(3);
                     double bearing = 0;
                     switch (direction) {
                         case "0":
@@ -370,14 +366,10 @@ public class MainActivity extends AppCompatActivity {
                     gridMap.moveRobot(new int[]{xPos, yPos}, bearing);
                     break;
                 case "image-rec":
-                    try {
-                        gridMap.updateImageID(
-                                value.getJSONObject("\"obstacle_id\"").toString(),
-                                value.getJSONObject("\"image_id\"").toString()
-                        );
-                    } catch (JSONException e) {
-                        throw new RuntimeException(e);
-                    }
+                    Pattern ImagePattern = Pattern.compile("\"image_id\": \"(.+)\", *\"obstacle_id\":  +\"([0-9]*)\"");
+                    Matcher imagematcher = ImagePattern.matcher(value);
+                    imagematcher.find();
+                    gridMap.updateImageID(imagematcher.group(2),imagematcher.group(1));
                     break;
             }
             /*
