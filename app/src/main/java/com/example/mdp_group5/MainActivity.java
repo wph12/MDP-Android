@@ -332,47 +332,6 @@ public class MainActivity extends AppCompatActivity {
         public void onReceive(Context context, Intent intent) {
             String message = intent.getStringExtra("receivedMessage");
             System.out.println("debug" + message);
-            final Pattern MessagePattern = Pattern.compile("\\{\"cat\": \"(.+)\", \"value\": \\{(.+)\\}\\}");
-            Matcher messagematch = MessagePattern.matcher(message);
-            messagematch.find();
-            String category = messagematch.group(1);
-            String value = messagematch.group(2);
-            switch (category) {
-                case "location":
-                    int xPos = 0;
-                    int yPos = 0;
-                    String direction = "";
-                    final Pattern LocationPattern = Pattern.compile("\"x\": *([0-9]+), *\"y\": *([0-9]+), *\"d\": *([0,2,4,6])");
-                    Matcher locationmatch = LocationPattern.matcher(value);
-                    locationmatch.find();
-                    xPos = Integer.parseInt(locationmatch.group(1));
-                    yPos = Integer.parseInt(locationmatch.group(2));
-                    direction = locationmatch.group(3);
-                    double bearing = 0;
-                    switch (direction) {
-                        case "0":
-                            bearing = 90;
-                            break;
-                        case "2":
-                            bearing = 0;
-                            break;
-                        case "4":
-                            bearing = 270;
-                            break;
-                        case "6":
-                            bearing = 180;
-                            break;
-                    }
-                    gridMap.moveRobot(new int[]{xPos, yPos}, bearing);
-                    break;
-                case "image-rec":
-                    Pattern ImagePattern = Pattern.compile("\"image_id\": \"(.+)\", *\"obstacle_id\":  +\"([0-9]*)\"");
-                    Matcher imagematcher = ImagePattern.matcher(value);
-                    imagematcher.find();
-                    gridMap.updateImageID(imagematcher.group(2),imagematcher.group(1));
-                    break;
-            }
-            /*
             if (message.contains("IMG")) {
                 String[] cmd = message.split("-");
                 gridMap.updateImageID(cmd[1], cmd[2]);
@@ -390,7 +349,6 @@ public class MainActivity extends AppCompatActivity {
             } else if (message.equals("ENDED")) {
                 ToggleButton imgRecBtn = findViewById(R.id.exploreToggleBtn2);
                 ToggleButton fastestCarBtn = findViewById(R.id.fastestToggleBtn2);
-
                 if (imgRecBtn.isChecked()) {
                     imgRecTimerFlag = true;
                     imgRecBtn.setChecked(false);
@@ -403,7 +361,6 @@ public class MainActivity extends AppCompatActivity {
                     ControlFragment.timerHandler.removeCallbacks(controlFragment.fastestCarTimer);
                 }
             }
-            */
         }
     };
     @Override
