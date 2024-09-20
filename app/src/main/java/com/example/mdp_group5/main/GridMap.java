@@ -494,7 +494,7 @@ public class GridMap extends View {
                 String displayedText;
                 if (! IMAGE_LIST[19 - i][j].equals("")) {
                     displayedText = IMAGE_LIST[19 - i][j];
-                    textPaint.setTextSize(18);
+                    textPaint.setTextSize(17);
                     canvas.drawText(
                             displayedText,
                             cells[j + 1][19 - i].startX + ((cells[1][1].endX - cells[1][1].startX) / 2),
