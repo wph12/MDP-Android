@@ -259,7 +259,7 @@ public class ControlFragment extends Fragment {
                 this.mainActivity.imgRecTimerFlag = false;
                 this.showToast("Image Recognition Started!!");
                 String getObsPos = this.gridMap.getAllObstacles();
-                getObsPos = "OBS|" + getObsPos;
+                // getObsPos = "OBS|" + getObsPos;
                 this.mainActivity.sendMessage(getObsPos);
                 this.robotStatusText.setText(R.string.img_rec_start);
                 this.imgRecTime = System.currentTimeMillis();
@@ -277,7 +277,7 @@ public class ControlFragment extends Fragment {
             // changed from START to STOP (i.e., challenge started)
             else if (fastestCarBtn.getText().equals("STOP")) {
                 this.showToast("Fastest Car started!");
-                this.mainActivity.sendMessage("controlstart");
+                this.mainActivity.sendMessage("{\"cat\": \"control\", \"value\": \"start\"}");
                 this.mainActivity.fastestCarTimerFlag = false;
                 this.robotStatusText.setText(R.string.fastest_car_start);
                 this.fastestCarTime = System.currentTimeMillis();

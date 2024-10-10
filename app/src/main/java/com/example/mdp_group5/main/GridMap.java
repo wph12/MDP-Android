@@ -1325,6 +1325,9 @@ public class GridMap extends View {
             	message.append('6'); break;
             }
             message.append("}");
+            if(i < this.getObstacleCoord().size()-1){ //no comma for last message
+                message.append(',')
+            }
             /*
             message is in the following format:
             x-coord,y-coord,N/S/E/W,obstacleID|x-coord,y-coord,N/S/E/W,obstacleID|...
