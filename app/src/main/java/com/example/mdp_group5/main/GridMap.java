@@ -1310,9 +1310,9 @@ public class GridMap extends View {
         for (int i = 0; i < this.getObstacleCoord().size(); i ++) {
             int[] currentObstacle = this.getObstacleCoord().get(i);
             String imageBearing = IMAGE_BEARING[currentObstacle[1] - 1][currentObstacle[0] - 1];
-            message.append("{\"x\": ").append(currentObstacle[0]);
-            message.append("\"y\": ").append(currentObstacle[1]);
-            message.append("\"id\": ").append(currentObstacle[2]);
+            message.append("{\"x\": ").append(currentObstacle[0]).append(",");
+            message.append("\"y\": ").append(currentObstacle[1]).append(",");
+            message.append("\"id\": ").append(currentObstacle[2]).append(",");
             message.append("\"d\": ");
             switch(imageBearing.charAt(0)){
             case 'N':
